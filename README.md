@@ -64,7 +64,18 @@ This will:
 
 ## Deployment
 
-To deploy your portfolio:
+### Option 1: GitHub Pages
+
+This portfolio is set up to be easily deployed on GitHub Pages:
+
+1. Push your code to a GitHub repository
+2. Go to repository Settings > Pages
+3. Set the source branch to "main" and save
+4. Your portfolio will be available at `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
+
+### Option 2: Custom Hosting
+
+To deploy your portfolio on a custom hosting provider:
 
 1. Build the production version:
    ```
@@ -74,6 +85,7 @@ To deploy your portfolio:
 
 2. Upload the following files to your hosting provider:
    - `index.html`
+   - `pages/` directory
    - `dist/` directory (contains styles.css and index.js)
    - Any images or assets you've added
 

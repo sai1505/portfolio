@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased bg-google-bg text-google-dark-gray transition-colors duration-300;
+  }
+  
+  body.dark {
+    @apply bg-dark-bg text-dark-text;
+  }
+}
+
+@layer components {
+  /* Typography */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-google-dark-gray font-product-sans dark:text-dark-text;
+  }
+  
+  .section-divider {
+    @apply w-24 h-1 bg-google-blue mx-auto mt-4 rounded-full dark:bg-gradient-to-r dark:from-google-blue dark:to-google-green;
+  }
+  
+  /* Theme toggle */
+  .theme-toggle {
+    @apply fixed top-4 right-4 z-50 w-10 h-10 rounded-full bg-white shadow-google flex items-center justify-center cursor-pointer transition-all duration-300 hover:shadow-google-hover dark:bg-dark-card dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
+  }
+  
+  /* Google-style curved navbar */
+  .google-navbar {
+    @apply fixed top-4 left-1/2 transform -translate-x-1/2 bg-white rounded-google shadow-google z-50 transition-all duration-300 dark:bg-dark-card dark:shadow-dark-google;
+  }
+  
+  .google-navbar-inner {
+    @apply flex items-center justify-between px-6 py-3;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-google-blue text-white font-medium rounded-google-md shadow-google hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
+  }
+  
+  .btn-secondary {
+    @apply inline-block px-6 py-3 bg-white text-google-blue font-medium rounded-google-md shadow-google border border-google-border hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:bg-dark-card dark:border-dark-border dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
+  }
+  
+  .btn-outline {
+    @apply inline-block px-6 py-3 bg-transparent text-google-blue font-medium rounded-google-md border border-google-blue hover:bg-google-hover transition-all duration-300 focus:outline-none dark:text-google-blue dark:border-google-blue dark:hover:bg-dark-hover;
+  }
+  
+  /* Navigation */
+  .nav-link {
+    @apply text-google-dark-gray hover:text-google-blue font-medium transition-colors px-5 py-2 rounded-google-md hover:bg-google-hover dark:text-dark-text dark:hover:text-google-blue dark:hover:bg-dark-hover;
+  }
+  
+  .nav-link.active {
+    @apply text-google-blue bg-google-light-gray dark:bg-dark-hover;
+  }
+  
+  /* Cards */
+  .google-card {
+    @apply bg-white rounded-google-md shadow-google-card hover:shadow-google-hover transition-all duration-300 dark:bg-dark-card dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
+  }
+  
+  .project-card {
+    @apply bg-white rounded-google-md shadow-google-card overflow-hidden transition-all duration-300 hover:-translate-y-1 dark:bg-dark-card dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
+  }
+  
+  /* Skills */
+  .skill-category {
+    @apply bg-white p-6 rounded-google-md shadow-google-card dark:bg-dark-card dark:shadow-dark-google;
+  }
+  
+  .skill-item {
+    @apply flex flex-col mb-4;
+  }
+  
+  .skill-name {
+    @apply text-google-dark-gray mb-1 font-medium dark:text-dark-text;
+  }
+  
+  .skill-bar {
+    @apply w-full h-3 bg-google-light-gray rounded-full overflow-hidden dark:bg-dark-hover;
+  }
+  
+  .skill-progress {
+    @apply h-full rounded-full relative overflow-hidden;
+  }
+  
+  .skill-progress-gradient {
+    @apply h-full rounded-full bg-gradient-to-r animate-gradient-x bg-skill-gradient-multi bg-300% relative;
+  }
+  
+  .skill-progress-gradient::after {
+    content: '';
+    @apply absolute top-0 right-0 h-full w-1/6 bg-white bg-opacity-30;
+    animation: shine 2s infinite;
+  }
+  
+  .skill-progress-blue {
+    @apply bg-skill-gradient-blue;
+  }
+  
+  .skill-progress-red {
+    @apply bg-skill-gradient-red;
+  }
+  
+  .skill-progress-green {
+    @apply bg-skill-gradient-green;
+  }
+  
+  .skill-progress-yellow {
+    @apply bg-skill-gradient-yellow;
+  }
+  
+  /* Form elements */
+  .form-input {
+    @apply w-full px-4 py-3 border border-google-border rounded-google-md focus:outline-none focus:ring-2 focus:ring-google-blue focus:border-google-blue transition-all dark:bg-dark-card dark:border-dark-border dark:text-dark-text;
+  }
+  
+  /* Social icons */
+  .social-icon {
+    @apply w-12 h-12 rounded-full flex items-center justify-center text-white transition-all;
+  }
+  
+  /* Tech tags */
+  .tech-tag {
+    @apply px-3 py-1 bg-google-light-gray text-google-dark-gray rounded-full text-sm dark:bg-dark-hover dark:text-white;
+  }
+  
+  /* Google-style search bar */
+  .google-search {
+    @apply w-full max-w-2xl mx-auto bg-white rounded-google shadow-google flex items-center px-6 py-3 focus-within:shadow-google-hover transition-all dark:bg-dark-card dark:shadow-dark-google dark:focus-within:shadow-dark-google-hover;
+  }
+  
+  .google-search-input {
+    @apply w-full border-none focus:outline-none text-google-dark-gray dark:bg-dark-card dark:text-dark-text;
+  }
+  
+  /* Google-style tabs */
+  .google-tabs {
+    @apply flex border-b border-google-border dark:border-dark-border;
+  }
+  
+  .google-tab {
+    @apply px-4 py-2 text-google-gray hover:text-google-blue border-b-2 border-transparent dark:text-gray-300 dark:hover:text-google-blue;
+  }
+  
+  .google-tab.active {
+    @apply text-google-blue border-google-blue;
+  }
+}
+
+/* Font family */
+@layer utilities {
+  .font-product-sans {
+    font-family: 'Product Sans', 'Google Sans', 'Roboto', sans-serif;
+  }
+  
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .bg-300\% {
+    background-size: 300% 100%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

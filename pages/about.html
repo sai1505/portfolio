@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - My Portfolio</title>
+    <link rel="stylesheet" href="../dist/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-roboto bg-google-bg text-google-dark-gray">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle">
+        <i id="theme-toggle-icon" class="fas fa-moon"></i>
+    </button>
+    
+    <!-- Google-style Curved Floating Navbar -->
+    <header id="navbar" class="google-navbar w-auto max-w-4xl">
+        <div class="google-navbar-inner">
+            <a href="../index.html" class="flex items-center mr-6">
+                <span class="text-2xl font-product-sans font-bold">
+                    <span class="text-google-blue">B</span><span class="text-google-red">S</span><span class="text-google-yellow">V</span><span class="text-google-green">R</span>
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-4">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="./about.html" class="nav-link active">About</a></li>
+                    <li><a href="./projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="./skills.html" class="nav-link">Skills</a></li>
+                    <li><a href="./contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-google-dark-gray dark:text-gray-300 focus:outline-none p-2 rounded-full hover:bg-google-light-gray dark:hover:bg-dark-hover transition-colors">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden bg-white dark:bg-dark-card shadow-google dark:shadow-dark-google md:hidden rounded-b-google-md">
+            <ul class="py-4 px-6 space-y-4">
+                <li><a href="../index.html" class="block py-3 px-4 hover:text-google-blue transition-colors hover:bg-google-light-gray dark:hover:bg-dark-hover rounded-google-md">Home</a></li>
+                <li><a href="./about.html" class="block py-3 px-4 text-google-blue rounded-google-md bg-google-light-gray dark:bg-dark-hover">About</a></li>
+                <li><a href="./projects.html" class="block py-3 px-4 hover:text-google-blue transition-colors hover:bg-google-light-gray dark:hover:bg-dark-hover rounded-google-md">Projects</a></li>
+                <li><a href="./skills.html" class="block py-3 px-4 hover:text-google-blue transition-colors hover:bg-google-light-gray dark:hover:bg-dark-hover rounded-google-md">Skills</a></li>
+                <li><a href="./contact.html" class="block py-3 px-4 hover:text-google-blue transition-colors hover:bg-google-light-gray dark:hover:bg-dark-hover rounded-google-md">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="pt-32 pb-16 px-6 md:px-10">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold font-product-sans text-google-dark-gray dark:text-white">About Me</h1>
+                <div class="w-24 h-1 bg-google-blue mx-auto mt-4 rounded-full dark:bg-gradient-to-r dark:from-google-blue dark:to-google-green"></div>
+            </div>
+            
+            <div class="google-card p-8 mb-12 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <div class="w-48 h-48 rounded-full bg-google-light-gray flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <!-- Replace with your image -->
+                        <img src="Portfolio Image.png" alt="Profile Photo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 font-product-sans dark:text-white">Who I Am</h2>
+                        <p class="text-google-dark-gray mb-4 leading-relaxed dark:text-gray-300">
+                            Motivated Computer Science student with expertise in C++, Java, Python, and SQL. 
+                            Skilled in developing scalable software solutions with a focus on performance and efficiency. 
+                            Passionate about machine learning, full-stack web development, and Android application development. 
+                            Strong problem-solving abilities and a collaborative mindset. Seeking opportunities in software development, machine learning, or full-stack engineering to build impactful applications.
+                        </p>
+                        <p class="text-google-dark-gray mb-4 leading-relaxed dark:text-gray-300">
+                            I believe in clean code, intuitive user experiences, and mobile apps that not only look 
+                            great but also perform exceptionally well across all devices.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mt-6">
+                            <a href="https://www.linkedin.com/in/bonamukkala-saivenkata-reddy-31196a259" class="inline-flex items-center text-google-blue hover:underline">
+                                <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/sai1505" class="inline-flex items-center text-google-blue hover:underline">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                            <a href="https://www.hackerrank.com/profile/22331A0519" class="inline-flex items-center text-google-blue hover:underline">
+                                <i class="fab fa-hackerrank mr-2"></i> Hackerrank
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="google-tabs mb-8 max-w-4xl mx-auto">
+                <button class="google-tab active">Education</button>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Education Section -->
+                <div class="google-card p-8 mb-8">
+                    <h3 class="text-xl font-bold mb-6 font-product-sans dark:text-white">Education</h3>
+                    
+                    <div class="mb-6 pb-6 border-b border-google-border dark:border-dark-border">
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold dark:text-white">Bachelor of Technology</h4>
+                            <span class="text-google-gray dark:text-gray-400">2022 - 2026</span>
+                        </div>
+                        <h4 class="font-bold dark:text-white mb-1">Computer Science and Engineering</h4>
+                        <p class="text-google-blue mb-1">Maharaj Vijayaram Gajapathi Raj College of Engineering</p>
+                        <p class="text-google-dark-gray dark:text-gray-300">Pursuing my Education currently.</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <h4 class="font-bold dark:text-white">Narayana P.U. College</h4>
+                            <span class="text-google-gray dark:text-gray-400">2020 - 2022</span>
+                        </div>
+                        <p class="text-google-blue mb-1">Maths, Physics, Chemistry and Computers (PCMC)</p>
+                        <p class="text-google-dark-gray dark:text-gray-300">Central Board of Secondary Education (CBSE)</p>
+                    </div>
+                </div>
+                
+                <!-- Services Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="google-card p-6">
+                        <div class="w-14 h-14 bg-google-light-gray rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-mobile text-google-blue text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 font-product-sans dark:text-white">App Development</h4>
+                        <p class="text-google-dark-gray dark:text-gray-300">Creating responsive, modern mobile apps with clean code and optimal performance.</p>
+                    </div>
+                    
+                    <div class="google-card p-6">
+                        <div class="w-14 h-14 bg-google-light-gray rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-paint-brush text-google-red text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 font-product-sans dark:text-white">UI/UX Design</h4>
+                        <p class="text-google-dark-gray dark:text-gray-300">Designing intuitive interfaces with great user experience and visual appeal.</p>
+                    </div>
+                    
+                    <div class="google-card p-6">
+                        <div class="w-14 h-14 bg-google-light-gray rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-mobile-alt text-google-green text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 font-product-sans dark:text-white">Responsive Design</h4>
+                        <p class="text-google-dark-gray dark:text-gray-300">Building mobile apps that work flawlessly on all devices and screen sizes.</p>
+                    </div>
+                    
+                    <div class="google-card p-6">
+                        <div class="w-14 h-14 bg-google-light-gray rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-rocket text-google-yellow text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 font-product-sans dark:text-white">Performance Optimization</h4>
+                        <p class="text-google-dark-gray dark:text-gray-300">Optimizing mobile apps for speed, efficiency, and better security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 md:px-10 border-t border-google-border dark:border-dark-border">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-google-gray dark:text-gray-400 mb-4 md:mb-0">
+                    &copy; 2024 BSVR. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/bonamukkala-saivenkata-reddy-31196a259" class="text-google-gray hover:text-google-blue transition-colors dark:text-gray-400 dark:hover:text-google-blue">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/sai1505" class="text-google-gray hover:text-google-blue transition-colors dark:text-gray-400 dark:hover:text-google-blue">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.hackerrank.com/profile/22331A0519" class="text-google-gray hover:text-google-blue transition-colors dark:text-gray-400 dark:hover:text-google-blue">
+                        <i class="fab fa-hackerrank"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCO4joG9Po8yncku1agA1lbw" class="text-google-gray hover:text-google-blue transition-colors dark:text-gray-400 dark:hover:text-google-blue">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../dist/index.js"></script>
+</body>
+</html>

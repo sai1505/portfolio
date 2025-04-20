@@ -86,13 +86,17 @@
   .btn-primary {
     @apply inline-block px-6 py-3 bg-google-blue text-white font-medium rounded-google-md shadow-google hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
   }
-  
+
   .btn-secondary {
     @apply inline-block px-6 py-3 bg-white text-google-blue font-medium rounded-google-md shadow-google border border-google-border hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:bg-dark-card dark:border-dark-border dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
   }
-  
+
   .btn-outline {
     @apply inline-block px-6 py-3 bg-transparent text-google-blue font-medium rounded-google-md border border-google-blue hover:bg-google-hover transition-all duration-300 focus:outline-none dark:text-google-blue dark:border-google-blue dark:hover:bg-dark-hover;
+  }
+  
+  .google-download-btn {
+    @apply block w-full text-center px-4 py-2 bg-google-blue text-white font-medium font-product-sans rounded-google shadow-google hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
   }
   
   /* Navigation */

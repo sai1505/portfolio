@@ -41,6 +41,47 @@
     @apply flex items-center justify-between px-6 py-3;
   }
   
+  /* Google-style hamburger menu */
+  .google-hamburger {
+    @apply relative w-6 h-6 flex flex-col justify-center items-center;
+  }
+  
+  .hamburger-line {
+    @apply block bg-current rounded-full transition-all duration-300 ease-in-out;
+    height: 2px;
+    width: 24px;
+  }
+  
+  .hamburger-line-1 {
+    @apply transform -translate-y-2;
+  }
+  
+  .hamburger-line-3 {
+    @apply transform translate-y-2;
+  }
+  
+  /* Hamburger animation when active */
+  .hamburger-active .hamburger-line-1 {
+    @apply transform rotate-45 translate-y-0;
+  }
+  
+  .hamburger-active .hamburger-line-2 {
+    @apply opacity-0;
+  }
+  
+  .hamburger-active .hamburger-line-3 {
+    @apply transform -rotate-45 translate-y-0;
+  }
+  
+  /* Mobile menu animation */
+  .mobile-menu-closed {
+    @apply max-h-0 opacity-0;
+  }
+  
+  .mobile-menu-open {
+    @apply max-h-96 opacity-100;
+  }
+  
   /* Buttons */
   .btn-primary {
     @apply inline-block px-6 py-3 bg-google-blue text-white font-medium rounded-google-md shadow-google hover:shadow-google-hover transform hover:-translate-y-0.5 transition-all duration-300 focus:outline-none dark:shadow-dark-google dark:hover:shadow-dark-google-hover;
@@ -90,7 +131,7 @@
   }
   
   .skill-progress {
-    @apply h-full rounded-full relative overflow-hidden;
+    @apply h-full rounded-full relative overflow-hidden transition-all duration-1000 ease-out;
   }
   
   .skill-progress-gradient {

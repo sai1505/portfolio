@@ -75,16 +75,30 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Mobile menu toggle
   mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    // Toggle hamburger animation
+    const hamburger = mobileMenuButton.querySelector('.google-hamburger');
+    hamburger?.classList.toggle('hamburger-active');
+    
+    // Toggle mobile menu
+    mobileMenu?.classList.toggle('mobile-menu-closed');
+    mobileMenu?.classList.toggle('mobile-menu-open');
   });
   
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (mobileMenu && !mobileMenu.classList.contains('hidden') && 
+    if (mobileMenu && 
+        mobileMenu.classList.contains('mobile-menu-open') && 
         !mobileMenuButton?.contains(target) && 
         !mobileMenu.contains(target)) {
-      mobileMenu.classList.add('hidden');
+      
+      // Remove active state from hamburger
+      const hamburger = mobileMenuButton?.querySelector('.google-hamburger');
+      hamburger?.classList.remove('hamburger-active');
+      
+      // Close mobile menu with animation
+      mobileMenu.classList.remove('mobile-menu-open');
+      mobileMenu.classList.add('mobile-menu-closed');
     }
   });
   
@@ -185,15 +199,71 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Animate skill bars on scroll
-  const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.skill-progress');
+  // Keep track of which skill items have already been animated
+  const animatedSkills = new Set();
+  
+  // Check if we're on the skills page
+  const isSkillsPage = window.location.pathname.includes('skills.html');
+  
+  // If we're on the skills page, immediately set all skill bars to their final width
+  // This ensures they don't reset when navigating back to the page
+  if (isSkillsPage) {
+    // Check if skills have been viewed before
+    const skillsViewed = localStorage.getItem('skillsViewed') === 'true';
     
-    elements.forEach(element => {
-      const elementPosition = element.getBoundingClientRect().top;
+    if (skillsViewed) {
+      // If skills have been viewed before, immediately set all bars to their final width
+      document.querySelectorAll('.skill-item').forEach((item, index) => {
+        const progressBar = item.querySelector('.skill-progress');
+        if (progressBar) {
+          const percentText = item.querySelector('.text-google-blue')?.textContent || '0%';
+          const targetWidth = percentText.replace('%', '').trim();
+          
+          progressBar.classList.remove('w-[0%]');
+          progressBar.classList.add(`w-[${targetWidth}%]`);
+          animatedSkills.add(index);
+        }
+      });
+    }
+  }
+  
+  const animateOnScroll = () => {
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    skillItems.forEach((item, index) => {
+      // Skip if this item has already been animated
+      if (animatedSkills.has(index)) return;
+      
+      const elementPosition = item.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
       
       if (elementPosition < windowHeight - 50) {
-        element.classList.add('animate-width');
+        // Get the progress bar element
+        const progressBar = item.querySelector('.skill-progress');
+        if (progressBar) {
+          // Get the target width from the percentage text
+          const percentText = item.querySelector('.text-google-blue')?.textContent || '0%';
+          const targetWidth = percentText.replace('%', '').trim();
+          
+          // First set width to 0
+          progressBar.classList.remove('w-[0%]', 'w-[70%]', 'w-[80%]', 'w-[85%]', 'w-[90%]');
+          progressBar.classList.add('w-[0%]');
+          
+          // Then animate to the target width after a small delay
+          setTimeout(() => {
+            progressBar.classList.remove('w-[0%]');
+            progressBar.classList.add(`w-[${targetWidth}%]`);
+            progressBar.classList.add('transition-all', 'duration-1000', 'ease-out');
+            
+            // Mark this skill as animated
+            animatedSkills.add(index);
+            
+            // If we're on the skills page, mark that skills have been viewed
+            if (isSkillsPage) {
+              localStorage.setItem('skillsViewed', 'true');
+            }
+          }, 100);
+        }
       }
     });
   };

@@ -1,5 +1,5 @@
 "use strict";
-// Main JavaScript file for your portfolio
+// Main TypeScript file for your portfolio
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const navbar = document.getElementById('navbar');
@@ -8,211 +8,164 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const themeToggle = document.getElementById('theme-toggle');
     const themeToggleIcon = document.getElementById('theme-toggle-icon');
-
     // Theme toggle functionality
     const initTheme = () => {
         // Check for saved theme preference or use system preference
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
         if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             document.documentElement.classList.add('dark');
             document.body.classList.add('dark');
-            if (themeToggleIcon) {
-                themeToggleIcon.classList.remove('fa-moon');
-                themeToggleIcon.classList.add('fa-sun');
-            }
-        } else {
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.add('fa-sun');
+        }
+        else {
             document.documentElement.classList.remove('dark');
             document.body.classList.remove('dark');
-            if (themeToggleIcon) {
-                themeToggleIcon.classList.remove('fa-sun');
-                themeToggleIcon.classList.add('fa-moon');
-            }
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.remove('fa-sun');
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.add('fa-moon');
         }
     };
-
     // Initialize theme
     initTheme();
-
     // Theme toggle event listener
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            // Toggle dark class on html element
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            
-            // Update icon
-            if (document.documentElement.classList.contains('dark')) {
-                if (themeToggleIcon) {
-                    themeToggleIcon.classList.remove('fa-moon');
-                    themeToggleIcon.classList.add('fa-sun');
-                }
-                localStorage.setItem('theme', 'dark');
-            } else {
-                if (themeToggleIcon) {
-                    themeToggleIcon.classList.remove('fa-sun');
-                    themeToggleIcon.classList.add('fa-moon');
-                }
-                localStorage.setItem('theme', 'light');
-            }
-            
-            // Add animation to theme toggle
-            themeToggle.classList.add('animate-spin');
-            setTimeout(() => {
-                themeToggle.classList.remove('animate-spin');
-            }, 500);
-        });
-    }
-
+    themeToggle === null || themeToggle === void 0 ? void 0 : themeToggle.addEventListener('click', () => {
+        // Toggle dark class on html element
+        document.documentElement.classList.toggle('dark');
+        document.body.classList.toggle('dark');
+        // Update icon
+        if (document.documentElement.classList.contains('dark')) {
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        }
+        else {
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.remove('fa-sun');
+            themeToggleIcon === null || themeToggleIcon === void 0 ? void 0 : themeToggleIcon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+        // Add animation to theme toggle
+        themeToggle.classList.add('animate-spin');
+        setTimeout(() => {
+            themeToggle.classList.remove('animate-spin');
+        }, 500);
+    });
     // Google-style floating navbar effect
     const handleScroll = () => {
         if (window.scrollY > 50) {
-            if (navbar) {
-                navbar.classList.add('shadow-google-hover');
-                navbar.classList.remove('top-4');
-                navbar.classList.add('top-2');
-            }
-        } else {
-            if (navbar) {
-                navbar.classList.remove('shadow-google-hover');
-                navbar.classList.remove('top-2');
-                navbar.classList.add('top-4');
-            }
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.add('shadow-google-hover');
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.remove('top-4');
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.add('top-2');
+        }
+        else {
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.remove('shadow-google-hover');
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.remove('top-2');
+            navbar === null || navbar === void 0 ? void 0 : navbar.classList.add('top-4');
         }
     };
-
     window.addEventListener('scroll', handleScroll);
-    
     // Initial call to set correct state
     handleScroll();
-
     // Mobile menu toggle
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-
+    mobileMenuButton === null || mobileMenuButton === void 0 ? void 0 : mobileMenuButton.addEventListener('click', () => {
+        // Toggle hamburger animation
+        const hamburger = mobileMenuButton.querySelector('.google-hamburger');
+        hamburger === null || hamburger === void 0 ? void 0 : hamburger.classList.toggle('hamburger-active');
+        // Toggle mobile menu
+        mobileMenu === null || mobileMenu === void 0 ? void 0 : mobileMenu.classList.toggle('mobile-menu-closed');
+        mobileMenu === null || mobileMenu === void 0 ? void 0 : mobileMenu.classList.toggle('mobile-menu-open');
+    });
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         const target = e.target;
-        if (mobileMenu && !mobileMenu.classList.contains('hidden') &&
-            mobileMenuButton && !mobileMenuButton.contains(target) &&
+        if (mobileMenu &&
+            mobileMenu.classList.contains('mobile-menu-open') &&
+            !(mobileMenuButton === null || mobileMenuButton === void 0 ? void 0 : mobileMenuButton.contains(target)) &&
             !mobileMenu.contains(target)) {
-            mobileMenu.classList.add('hidden');
+            // Remove active state from hamburger
+            const hamburger = mobileMenuButton === null || mobileMenuButton === void 0 ? void 0 : mobileMenuButton.querySelector('.google-hamburger');
+            hamburger === null || hamburger === void 0 ? void 0 : hamburger.classList.remove('hamburger-active');
+            // Close mobile menu with animation
+            mobileMenu.classList.remove('mobile-menu-open');
+            mobileMenu.classList.add('mobile-menu-closed');
         }
     });
-
-    // Google search bar functionality
+    // Google search bar functionality (for demo purposes)
     const searchInput = document.querySelector('.google-search-input');
     if (searchInput) {
-        // Check if we're on the projects page
-        const isProjectsPage = window.location.pathname.includes('projects.html');
-        
-        if (!isProjectsPage) {
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const searchTerm = searchInput.value.toLowerCase();
-                    
-                    // Simple search functionality - redirect to appropriate page based on keywords
-                    if (searchTerm.includes('about') || searchTerm.includes('me') || searchTerm.includes('who')) {
-                        window.location.href = './pages/about.html';
-                    }
-                    else if (searchTerm.includes('project') || searchTerm.includes('work') || searchTerm.includes('portfolio')) {
-                        window.location.href = './pages/projects.html';
-                    }
-                    else if (searchTerm.includes('skill') || searchTerm.includes('expertise') || searchTerm.includes('technology')) {
-                        window.location.href = './pages/skills.html';
-                    }
-                    else if (searchTerm.includes('contact') || searchTerm.includes('email') || searchTerm.includes('message')) {
-                        window.location.href = './pages/contact.html';
-                    }
-                    else {
-                        // If no match, show a message
-                        alert(`Searching for: ${searchTerm}`);
-                    }
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const searchTerm = searchInput.value.toLowerCase();
+                // Simple search functionality - redirect to appropriate page based on keywords
+                if (searchTerm.includes('about') || searchTerm.includes('me') || searchTerm.includes('who')) {
+                    window.location.href = './pages/about.html';
                 }
-            });
-        }
-    }
-
-    // Form submission handling with Formspree
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const subjectInput = document.getElementById('subject');
-            const messageInput = document.getElementById('message');
-            
-            // Create form data object for submission
-            const formData = new FormData();
-            formData.append('name', nameInput.value);
-            formData.append('email', emailInput.value);
-            formData.append('subject', subjectInput ? subjectInput.value : 'No subject');
-            formData.append('message', messageInput.value);
-            
-            // Submit form data to Formspree
-            fetch('https://formspree.io/f/mldjqjaa', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
+                else if (searchTerm.includes('project') || searchTerm.includes('work') || searchTerm.includes('portfolio')) {
+                    window.location.href = './pages/projects.html';
                 }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
+                else if (searchTerm.includes('skill') || searchTerm.includes('expertise') || searchTerm.includes('technology')) {
+                    window.location.href = './pages/skills.html';
                 }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                // Show success message
-                const formContainer = contactForm.parentElement;
-                if (formContainer) {
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
-                    successMessage.innerHTML = `
-                        <strong class="font-bold">Thank you!</strong>
-                        <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
-                    `;
-                    formContainer.appendChild(successMessage);
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Remove success message after 5 seconds
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 5000);
+                else if (searchTerm.includes('contact') || searchTerm.includes('email') || searchTerm.includes('message')) {
+                    window.location.href = './pages/contact.html';
                 }
-            })
-            .catch(error => {
-                // Show error message
-                const formContainer = contactForm.parentElement;
-                if (formContainer) {
-                    const errorMessage = document.createElement('div');
-                    errorMessage.className = 'bg-google-light-gray border border-google-red text-google-red px-4 py-3 rounded-google-md relative mt-4';
-                    errorMessage.innerHTML = `
-                        <strong class="font-bold">Oops!</strong>
-                        <span class="block sm:inline"> There was an error sending your message. Please try again later.</span>
-                    `;
-                    formContainer.appendChild(errorMessage);
-                    
-                    // Remove error message after 5 seconds
-                    setTimeout(() => {
-                        errorMessage.remove();
-                    }, 5000);
+                else {
+                    // If no match, show a message
+                    alert(`Searching for: ${searchTerm}`);
                 }
-                console.error('Error:', error);
-            });
+            }
         });
     }
-
+    // Google-style tabs functionality
+    const tabButtons = document.querySelectorAll('.google-tab');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('text-google-blue');
+                btn.classList.remove('border-google-blue');
+            });
+            // Add active class to clicked tab
+            button.classList.add('active');
+            button.classList.add('text-google-blue');
+            button.classList.add('border-google-blue');
+        });
+    });
+    // Form submission handling
+    contactForm === null || contactForm === void 0 ? void 0 : contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Get form data
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        // Here you would typically send the data to a server
+        console.log('Form submitted:', {
+            name: nameInput.value,
+            email: emailInput.value,
+            subject: (subjectInput === null || subjectInput === void 0 ? void 0 : subjectInput.value) || 'No subject',
+            message: messageInput.value
+        });
+        // Show success message
+        const formContainer = contactForm.parentElement;
+        if (formContainer) {
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
+            successMessage.innerHTML = `
+        <strong class="font-bold">Thank you!</strong>
+        <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
+      `;
+            formContainer.appendChild(successMessage);
+            // Reset form
+            contactForm.reset();
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }
+    });
     // Project hover effects
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
@@ -223,21 +176,68 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.remove('shadow-google-hover');
         });
     });
-
     // Animate skill bars on scroll
+    // Keep track of which skill items have already been animated
+    const animatedSkills = new Set();
+    // Check if we're on the skills page
+    const isSkillsPage = window.location.pathname.includes('skills.html');
+    // If we're on the skills page, immediately set all skill bars to their final width
+    // This ensures they don't reset when navigating back to the page
+    if (isSkillsPage) {
+        // Check if skills have been viewed before
+        const skillsViewed = localStorage.getItem('skillsViewed') === 'true';
+        if (skillsViewed) {
+            // If skills have been viewed before, immediately set all bars to their final width
+            document.querySelectorAll('.skill-item').forEach((item, index) => {
+                var _a;
+                const progressBar = item.querySelector('.skill-progress');
+                if (progressBar) {
+                    const percentText = ((_a = item.querySelector('.text-google-blue')) === null || _a === void 0 ? void 0 : _a.textContent) || '0%';
+                    const targetWidth = percentText.replace('%', '').trim();
+                    progressBar.classList.remove('w-[0%]');
+                    progressBar.classList.add(`w-[${targetWidth}%]`);
+                    animatedSkills.add(index);
+                }
+            });
+        }
+    }
     const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.skill-progress');
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach((item, index) => {
+            var _a;
+            // Skip if this item has already been animated
+            if (animatedSkills.has(index))
+                return;
+            const elementPosition = item.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
             if (elementPosition < windowHeight - 50) {
-                element.classList.add('animate-width');
+                // Get the progress bar element
+                const progressBar = item.querySelector('.skill-progress');
+                if (progressBar) {
+                    // Get the target width from the percentage text
+                    const percentText = ((_a = item.querySelector('.text-google-blue')) === null || _a === void 0 ? void 0 : _a.textContent) || '0%';
+                    const targetWidth = percentText.replace('%', '').trim();
+                    // First set width to 0
+                    progressBar.classList.remove('w-[0%]', 'w-[70%]', 'w-[80%]', 'w-[85%]', 'w-[90%]');
+                    progressBar.classList.add('w-[0%]');
+                    // Then animate to the target width after a small delay
+                    setTimeout(() => {
+                        progressBar.classList.remove('w-[0%]');
+                        progressBar.classList.add(`w-[${targetWidth}%]`);
+                        progressBar.classList.add('transition-all', 'duration-1000', 'ease-out');
+                        // Mark this skill as animated
+                        animatedSkills.add(index);
+                        // If we're on the skills page, mark that skills have been viewed
+                        if (isSkillsPage) {
+                            localStorage.setItem('skillsViewed', 'true');
+                        }
+                    }, 100);
+                }
             }
         });
     };
-
     window.addEventListener('scroll', animateOnScroll);
-    
     // Initial call to animate elements in view
     setTimeout(animateOnScroll, 500);
 });
+//# sourceMappingURL=index.js.map

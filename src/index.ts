@@ -147,42 +147,88 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Form submission handling
-  contactForm?.addEventListener('submit', (e) => {
+  contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form data
     const nameInput = document.getElementById('name') as HTMLInputElement;
     const emailInput = document.getElementById('email') as HTMLInputElement;
-    const subjectInput = document.getElementById('subject') as HTMLInputElement;
     const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+    const form = e.target as HTMLFormElement;
     
-    // Here you would typically send the data to a server
-    console.log('Form submitted:', {
-      name: nameInput.value,
-      email: emailInput.value,
-      subject: subjectInput?.value || 'No subject',
-      message: messageInput.value
-    });
-    
-    // Show success message
-    const formContainer = contactForm.parentElement;
-    if (formContainer) {
-      const successMessage = document.createElement('div');
-      successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
-      successMessage.innerHTML = `
-        <strong class="font-bold">Thank you!</strong>
-        <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
-      `;
+    try {
+      // Create form data object
+      const formData = new FormData(form);
       
-      formContainer.appendChild(successMessage);
+      // Submit the form data to Formspree
+      const response = await fetch('https://formspree.io/f/mldjqjaa', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
       
-      // Reset form
-      (contactForm as HTMLFormElement).reset();
+      if (response.ok) {
+        // Show success message
+        const formContainer = contactForm.parentElement;
+        if (formContainer) {
+          const successMessage = document.createElement('div');
+          successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
+          successMessage.innerHTML = `
+            <strong class="font-bold">Thank you!</strong>
+            <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
+          `;
+          
+          formContainer.appendChild(successMessage);
+          
+          // Reset form
+          form.reset();
+          
+          // Remove success message after 5 seconds
+          setTimeout(() => {
+            successMessage.remove();
+          }, 5000);
+        }
+      } else {
+        // Show error message
+        const formContainer = contactForm.parentElement;
+        if (formContainer) {
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'bg-google-light-gray border border-google-red text-google-red px-4 py-3 rounded-google-md relative mt-4';
+          errorMessage.innerHTML = `
+            <strong class="font-bold">Oops!</strong>
+            <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+          `;
+          
+          formContainer.appendChild(errorMessage);
+          
+          // Remove error message after 5 seconds
+          setTimeout(() => {
+            errorMessage.remove();
+          }, 5000);
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
       
-      // Remove success message after 5 seconds
-      setTimeout(() => {
-        successMessage.remove();
-      }, 5000);
+      // Show error message
+      const formContainer = contactForm.parentElement;
+      if (formContainer) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'bg-google-light-gray border border-google-red text-google-red px-4 py-3 rounded-google-md relative mt-4';
+        errorMessage.innerHTML = `
+          <strong class="font-bold">Oops!</strong>
+          <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+        `;
+        
+        formContainer.appendChild(errorMessage);
+        
+        // Remove error message after 5 seconds
+        setTimeout(() => {
+          errorMessage.remove();
+        }, 5000);
+      }
     }
   });
   

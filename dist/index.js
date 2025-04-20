@@ -1,5 +1,14 @@
 "use strict";
 // Main TypeScript file for your portfolio
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const navbar = document.getElementById('navbar');
@@ -134,38 +143,80 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     // Form submission handling
-    contactForm === null || contactForm === void 0 ? void 0 : contactForm.addEventListener('submit', (e) => {
+    contactForm === null || contactForm === void 0 ? void 0 : contactForm.addEventListener('submit', (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         // Get form data
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
-        const subjectInput = document.getElementById('subject');
         const messageInput = document.getElementById('message');
-        // Here you would typically send the data to a server
-        console.log('Form submitted:', {
-            name: nameInput.value,
-            email: emailInput.value,
-            subject: (subjectInput === null || subjectInput === void 0 ? void 0 : subjectInput.value) || 'No subject',
-            message: messageInput.value
-        });
-        // Show success message
-        const formContainer = contactForm.parentElement;
-        if (formContainer) {
-            const successMessage = document.createElement('div');
-            successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
-            successMessage.innerHTML = `
-        <strong class="font-bold">Thank you!</strong>
-        <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
-      `;
-            formContainer.appendChild(successMessage);
-            // Reset form
-            contactForm.reset();
-            // Remove success message after 5 seconds
-            setTimeout(() => {
-                successMessage.remove();
-            }, 5000);
+        const form = e.target;
+        try {
+            // Create form data object
+            const formData = new FormData(form);
+            // Submit the form data to Formspree
+            const response = yield fetch('https://formspree.io/f/mldjqjaa', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                // Show success message
+                const formContainer = contactForm.parentElement;
+                if (formContainer) {
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'bg-google-light-gray border border-google-blue text-google-blue px-4 py-3 rounded-google-md relative mt-4';
+                    successMessage.innerHTML = `
+            <strong class="font-bold">Thank you!</strong>
+            <span class="block sm:inline"> Your message has been sent successfully. I'll get back to you soon.</span>
+          `;
+                    formContainer.appendChild(successMessage);
+                    // Reset form
+                    form.reset();
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                }
+            }
+            else {
+                // Show error message
+                const formContainer = contactForm.parentElement;
+                if (formContainer) {
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'bg-google-light-gray border border-google-red text-google-red px-4 py-3 rounded-google-md relative mt-4';
+                    errorMessage.innerHTML = `
+            <strong class="font-bold">Oops!</strong>
+            <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+          `;
+                    formContainer.appendChild(errorMessage);
+                    // Remove error message after 5 seconds
+                    setTimeout(() => {
+                        errorMessage.remove();
+                    }, 5000);
+                }
+            }
         }
-    });
+        catch (error) {
+            console.error('Form submission error:', error);
+            // Show error message
+            const formContainer = contactForm.parentElement;
+            if (formContainer) {
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'bg-google-light-gray border border-google-red text-google-red px-4 py-3 rounded-google-md relative mt-4';
+                errorMessage.innerHTML = `
+          <strong class="font-bold">Oops!</strong>
+          <span class="block sm:inline"> Something went wrong. Please try again later.</span>
+        `;
+                formContainer.appendChild(errorMessage);
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+            }
+        }
+    }));
     // Project hover effects
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {

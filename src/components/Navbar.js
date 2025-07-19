@@ -6,14 +6,16 @@ import {
     Box,
     Button,
     IconButton,
-    Drawer,
     List,
     ListItem,
     ListItemButton,
     ListItemText,
-    Typography
+    Typography,
+    Collapse,
+    Paper,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { googleColors, navLinks } from '../data';
 
 const Logo = () => (
@@ -30,17 +32,46 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+            if (window.scrollY > 20 && mobileOpen) {
+                setMobileOpen(false);
+            }
+        };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [mobileOpen]);
 
-    const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+    const handleDrawerToggle = () => {
+        setMobileOpen((prev) => !prev);
+    };
 
     return (
-        <>
-            <AppBar position="fixed" elevation={0} sx={{ top: isScrolled ? '8px' : '16px', left: '50%', transform: 'translateX(-50%)', maxWidth: 'calc(100% - 32px)', width: 'auto', borderRadius: '28px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', boxShadow: isScrolled ? 4 : 'none', transition: 'top 0.3s, box-shadow 0.3s', zIndex: 1300 }}>
-                <Toolbar sx={{ justifyContent: 'space-between', px: 3, minWidth: '280px' }}>
+        <Box
+            sx={{
+                position: 'fixed',
+                top: isScrolled ? '8px' : '16px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: 'calc(100% - 32px)', // Responsive width for mobile
+                maxWidth: '960px', // Max width for desktop
+                zIndex: 1300,
+                transition: 'top 0.3s',
+            }}
+        >
+            <AppBar
+                position="static"
+                elevation={0}
+                sx={{
+                    borderRadius: '28px',
+                    bgcolor: 'background.paper',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    boxShadow: isScrolled ? 4 : 'none',
+                    transition: 'box-shadow 0.3s',
+                }}
+            >
+                <Toolbar sx={{ justifyContent: 'space-between', px: 3 }}>
                     <Logo />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {navLinks.map((link) => (
@@ -57,35 +88,54 @@ export default function Navbar() {
                         ))}
                     </Box>
                     <IconButton
-                        color="inherit"
                         aria-label="open drawer"
                         edge="end"
                         onClick={handleDrawerToggle}
-                        sx={{ display: { xs: 'flex', md: 'none' } }}
+                        sx={{
+                            display: { xs: 'flex', md: 'none' },
+                            color: 'text.primary'
+                        }}
                     >
-                        <MenuIcon />
+                        {mobileOpen ? <CloseIcon /> : <MenuIcon />}
                     </IconButton>
                 </Toolbar>
             </AppBar>
 
-            <Drawer anchor="left" open={mobileOpen} onClose={handleDrawerToggle} disablePortal>
-                <Box sx={{ width: 250, bgcolor: 'background.default' }} role="presentation" onClick={handleDrawerToggle}>
-                    <List>
+            <Collapse in={mobileOpen} timeout="auto" unmountOnExit>
+                <Paper
+                    elevation={4}
+                    sx={{
+                        mt: 1,
+                        bgcolor: (theme) => theme.palette.background.paper,
+                        borderRadius: '28px',
+                        border: '1px solid',
+                        borderColor: 'divider',
+                    }}
+                >
+                    <List component="div" disablePadding>
                         {navLinks.map((link) => (
-                            <ListItem key={link.name} disablePadding>
-                                <ListItemButton component={NavLink} to={link.href} end={link.href === '/'}>
-                                    {({ isActive }) => (
-                                        <ListItemText
-                                            primary={link.name}
-                                            sx={{ color: isActive ? 'primary.main' : 'text.primary' }}
-                                        />
-                                    )}
-                                </ListItemButton>
-                            </ListItem>
+                            <NavLink to={link.href} end={link.href === '/'} key={link.name} style={{ textDecoration: 'none' }}>
+                                {({ isActive }) => (
+                                    <ListItem disablePadding>
+                                        <ListItemButton
+                                            onClick={() => setMobileOpen(false)}
+                                            sx={{ textAlign: 'center' }}
+                                        >
+                                            <ListItemText
+                                                primary={link.name}
+                                                primaryTypographyProps={{
+                                                    color: isActive ? 'primary.main' : 'text.primary',
+                                                    fontWeight: isActive ? 'bold' : 'normal'
+                                                }}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                )}
+                            </NavLink>
                         ))}
                     </List>
-                </Box>
-            </Drawer>
-        </>
+                </Paper>
+            </Collapse>
+        </Box>
     );
 }

@@ -93,10 +93,12 @@ export default function AboutHero() {
 
                 {/* --- RIGHT COLUMN (Services) --- */}
                 <Grid item xs={12} md={6}>
-                    <Grid container spacing={2}>
+                    {/* Updated this Grid container to center the fixed-width cards */}
+                    <Grid container spacing={2} justifyContent="center">
                         {servicesData.map(service => (
-                            <Grid item xs={12} sm={6} key={service.title}>
-                                <Card sx={{ ...cardStyle, textAlign: 'center' }}>
+                            // Removed responsive props (xs, sm) to use fixed width
+                            <Grid item key={service.title}>
+                                <Card sx={{ ...cardStyle, textAlign: 'center', width: 240 }}>
                                     <Avatar sx={{ bgcolor: 'action.hover', width: 56, height: 56, mx: 'auto', mb: 2 }}>
                                         {service.icon}
                                     </Avatar>

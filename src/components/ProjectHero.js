@@ -137,7 +137,7 @@ export default function ProjectsPage() {
             </Stack>
 
             {/* Projects Grid */}
-            <Grid container spacing={4}>
+            <Grid container spacing={4} justifyContent="center">
                 {filteredProjects.map(project => (
                     <ProjectCard key={project.title} project={project} />
                 ))}

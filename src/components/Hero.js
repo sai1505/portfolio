@@ -56,10 +56,10 @@ export default function Hero() {
                         I'm <Box component="span" sx={{ color: 'primary.main' }}>Bonamukkala Saivenkata Reddy</Box>
                     </Typography>
                     <Typography variant="h5" color="text.secondary" gutterBottom sx={{ my: 2 }}>
-                        Problem Solver
+                        Tech-Driven Problem Solver
                     </Typography>
                     <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', mb: 4 }}>
-                        I build effective, responsive mobile apps to solve any real-world problem, using whatever technology is best for the job.
+                        Technology is my toolkit, not my identity. I solve real-world problems by choosing what works — mobile, web, cloud, or code from scratch.
                     </Typography>
 
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">

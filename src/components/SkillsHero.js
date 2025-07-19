@@ -9,7 +9,6 @@ import {
     Avatar,
     LinearProgress,
 } from '@mui/material';
-// 1. Import googleColors to use in the progress bar
 import { skillsData, certificationsData, googleColors } from '../data';
 
 // Reusable style for the main cards
@@ -35,7 +34,6 @@ const SkillItem = ({ skill }) => {
                     Level {skill.level}/5
                 </Typography>
             </Stack>
-            {/* 2. Apply custom styles to the LinearProgress component */}
             <LinearProgress
                 variant="determinate"
                 value={value}
@@ -44,7 +42,6 @@ const SkillItem = ({ skill }) => {
                     borderRadius: '4px',
                     bgcolor: 'divider', // Set a neutral background color
                     '& .MuiLinearProgress-bar': {
-                        // Apply the Google color gradient to the bar
                         background: `linear-gradient(90deg, ${googleColors.blue}, ${googleColors.red}, ${googleColors.yellow}, ${googleColors.green})`,
                     },
                 }}
@@ -54,8 +51,8 @@ const SkillItem = ({ skill }) => {
 };
 
 const CertificationItem = ({ cert }) => (
-    // This is now a standalone card with the updated hover effect
     <Card sx={{
+        width: 340, // Set a fixed width for the card
         p: 2,
         height: '100%',
         border: '1px solid',
@@ -112,7 +109,7 @@ export default function SkillsHero() {
                 </Stack>
             </Card>
 
-            {/* Certifications Section - No longer in a parent card */}
+            {/* Certifications Section */}
             <Box sx={{ textAlign: 'center', my: 6 }}>
                 <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
                     Certifications
@@ -120,9 +117,11 @@ export default function SkillsHero() {
                 <Box sx={{ width: 100, height: 4, bgcolor: 'primary.main', mx: 'auto', borderRadius: '2px' }} />
             </Box>
 
-            <Grid container spacing={2}>
+            {/* Certifications Grid */}
+            <Grid container spacing={2} justifyContent="center">
                 {certificationsData.map(cert => (
-                    <Grid item xs={12} sm={6} md={4} key={cert.title}>
+                    // The Grid item no longer needs responsive props
+                    <Grid item key={cert.title}>
                         <CertificationItem cert={cert} />
                     </Grid>
                 ))}

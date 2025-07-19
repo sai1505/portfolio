@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, CssBaseline, Box, IconButton, Container } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box, Container } from '@mui/material';
 
 // Import all your components and pages
 import { getTheme } from './theme';
@@ -11,10 +11,6 @@ import AboutHero from './components/AboutHero';
 import ProjectHero from './components/ProjectHero';
 import SkillsHero from './components/SkillsHero';
 import ContactHero from './components/ContactHero';
-
-// You can keep the theme toggle logic here
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 function App() {
     const [mode, setMode] = useState('light');
@@ -43,9 +39,7 @@ function App() {
                     {/* Navbar is outside <Routes>, so it stays on every page */}
                     <Navbar />
 
-                    <IconButton onClick={toggleColorMode} sx={{ position: 'fixed', top: 16, right: 16, zIndex: 1301, bgcolor: 'background.paper' }}>
-                        {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                    </IconButton>
+                    {/* The fixed theme toggler has been removed from here */}
 
                     {/* This is the main content area that will change */}
                     <Container component="main" maxWidth="lg" sx={{ mt: '80px', mb: 4, flexGrow: 1 }}>
@@ -58,8 +52,8 @@ function App() {
                         </Routes>
                     </Container>
 
-                    {/* Footer is also outside <Routes>, so it also stays on every page */}
-                    <Footer />
+                    {/* Footer now receives the props to handle theme toggling */}
+                    <Footer mode={mode} toggleColorMode={toggleColorMode} />
 
                 </Box>
             </BrowserRouter>

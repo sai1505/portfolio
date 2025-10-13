@@ -66,7 +66,8 @@ export const servicesData = [
     { icon: <PaletteIcon sx={{ color: googleColors.red, fontSize: 32 }} />, title: 'UI/UX Design', description: 'Designing intuitive interfaces with great user experience and visual appeal.' },
     { icon: <AllInclusiveIcon sx={{ color: googleColors.green, fontSize: 32 }} />, title: 'Tech Agnostic Solution', description: 'Engineering effective solutions for any challenge by selecting the best technology for the job, regardless of the stack.' },
     { icon: <SpeedIcon sx={{ color: googleColors.yellow, fontSize: 32 }} />, title: 'Performance Optimization', description: 'Optimizing mobile apps for speed, efficiency, and better security.' },
-    { icon: <LightbulbIcon sx={{ color: googleColors.blue, fontSize: 32 }} />, title: 'Real-Time Problem Solver', description: 'Analyzing complex challenges to devise efficient and scalable algorithmic solutions.' }
+    { icon: <LightbulbIcon sx={{ color: googleColors.blue, fontSize: 32 }} />, title: 'Real-Time Problem Solver', description: 'Analyzing complex challenges to devise efficient and scalable algorithmic solutions.' },
+    { icon: <LaptopIcon sx={{ color: googleColors.green, fontSize: 32 }} />, title: 'Full Stack Web Development', description: 'Building responsive, scalable web applications with clean architecture and seamless user experiences.' }
 ]
 
 export const projectsData = [
@@ -79,6 +80,16 @@ export const projectsData = [
         tags: ['HTML', 'CSS', 'JS', 'Cohere API', 'Python', 'Flask'],
         youtube: 'https://youtu.be/DUenVb8Ekqs',
         github: 'https://github.com/sai1505/DBMS_PROJECT',
+    },
+    {
+        title: 'Tax Suthradhar',
+        category: 'web',
+        icon: <LaptopIcon sx={{ color: 'white', fontSize: 50 }} />,
+        bgColor: '#878383ff',
+        description: 'An AI-powered tax compliance system that analyzes ITR files to help IT employees legally save money and simplify tax management.',
+        tags: ['React js', 'Express js', 'Node js', 'GroQ Models', 'Langchain', 'FastAPI', 'Firebase', 'Cloudfare-R2', 'Docling'],
+        youtube: 'https://youtu.be/DUenVb8Ekqs',
+        github: 'https://github.com/sai1505/TaxSuthradhar',
     },
     {
         title: 'Digitalized Finance',
@@ -158,12 +169,15 @@ export const projectsData = [
 
 // --- Skills Data ---
 export const skillsData = [
-    { name: 'App Development (Java, Android Studio)', level: 4 },
+    { name: 'App Development (Java, Kotlin, Android Studio)', level: 4 },
     { name: 'UI/UX Design', level: 4 },
     { name: 'Python', level: 4 },
     { name: 'Java', level: 4 },
-    { name: 'Web Technologies (HTML, CSS, JS)', level: 3 },
+    { name: 'Web Technologies (HTML, CSS, JS, ReactJS, ExpressJs, NodeJS)', level: 3 },
     { name: 'Data Structures & Algorithms', level: 3 },
+    { name: 'Libraries & Frameworks (Docling, Langchain, LLMs, FastAPI)', level: 3 },
+    { name: 'Databases (MySQl, CLoudfare-R2)', level: 3 },
+    { name: 'Tools & IDEs (Git, GitHub, VS Code, Android Studio)', level: 4 },
     { name: 'Technical Communication', level: 4 },
     { name: 'Critical Thinking', level: 4 },
 ];
